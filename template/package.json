@@ -1,0 +1,7 @@
+{
+  "name": "[script-name]",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "bun run src/index.ts"
+  }
+}
