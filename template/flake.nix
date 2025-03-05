@@ -73,10 +73,16 @@
       apps.default = self.apps.${system}.${pname};
 
       devShells.default = pkgs.mkShell {
-        buildInputs = with pkgs; [bun typescript];
+        buildInputs = with pkgs; [bun typescript direnv];
         shellHook = ''
           echo "Welcome to the ${pname} dev shell!"
           echo "Bun version: $(bun --version)"
+
+          # Set up .envrc if it doesn't exist
+          if [ ! -e .envrc ]; then
+            echo "use flake" > .envrc
+            direnv allow
+          fi
         '';
       };
     });
